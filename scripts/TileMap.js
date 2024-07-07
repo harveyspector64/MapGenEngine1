@@ -1,3 +1,5 @@
+// File: scripts/TileMap.js
+
 class TileMap {
     constructor(width, height, tileSize) {
         this.width = width;
@@ -30,8 +32,8 @@ class TileMap {
     }
 
     generateMap() {
-        // Implement Wave Function Collapse to generate the map
-        // This is a placeholder. We'll implement this step later.
+        const wfc = new WaveFunctionCollapse(this);
+        wfc.run();
     }
 
     draw(context) {
