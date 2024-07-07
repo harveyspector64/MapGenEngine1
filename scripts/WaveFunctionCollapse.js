@@ -16,7 +16,7 @@
             return patterns;
         }
 
-        generateMap() {
+        run() {
             const rows = this.tileMap.map.length;
             const cols = this.tileMap.map[0].length;
             const map = this.tileMap.map;
