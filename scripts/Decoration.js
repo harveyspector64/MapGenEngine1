@@ -24,6 +24,15 @@ class Decoration {
                 }
             }
         }
+
+        // Place bushes
+        for (let y = 0; y < this.tileMap.map.length; y++) {
+            for (let x = 0; x < this.tileMap.map[y].length; x++) {
+                if (this.tileMap.map[y][x] === 'grass' && Math.random() < 0.03) {
+                    this.tileMap.map[y][x] = 'bush';
+                }
+            }
+        }
     }
 
     createTreeClusters() {
