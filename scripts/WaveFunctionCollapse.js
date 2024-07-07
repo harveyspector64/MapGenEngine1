@@ -7,23 +7,19 @@
 
         generatePatterns() {
             const patterns = {
-                grass: ['field', 'road', 'tree', 'bush', 'hill', 'barn', 'silo', 'water'],
-                field: ['grass', 'road', 'tree', 'bush'],
-                road: ['grass', 'field', 'tree', 'bush'],
-                tree: ['grass', 'field', 'road'],
-                bush: ['grass', 'field', 'road'],
-                hill: ['grass', 'field'],
-                barn: ['grass', 'field'],
-                silo: ['grass', 'field'],
-                water: ['grass', 'field']
+                'grass': ['grass', 'road', 'tree', 'bush', 'hill'],
+                'field': ['field', 'road'],
+                'road': ['grass', 'road', 'field'],
+                'tree': ['grass', 'tree'],
+                'bush': ['grass', 'bush']
             };
             return patterns;
         }
 
-        run() {
-            const { width, height, tileSize, map } = this.tileMap;
-            const rows = Math.ceil(height / tileSize);
-            const cols = Math.ceil(width / tileSize);
+        generateMap() {
+            const rows = this.tileMap.map.length;
+            const cols = this.tileMap.map[0].length;
+            const map = this.tileMap.map;
 
             for (let y = 0; y < rows; y++) {
                 for (let x = 0; x < cols; x++) {
@@ -34,12 +30,11 @@
                 }
             }
 
-            // Ensure fields are organized
             this.organizeFields();
         }
 
         organizeFields() {
-            const { map } = this.tileMap;
+            const map = this.tileMap.map;
             const fieldClusters = this.createFieldClusters();
 
             for (let cluster of fieldClusters) {
@@ -88,7 +83,7 @@
         }
 
         getNeighbors(x, y) {
-            const { map } = this.tileMap;
+            const map = this.tileMap.map;
             const neighbors = [];
 
             if (y > 0) neighbors.push(map[y - 1][x]);
