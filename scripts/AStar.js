@@ -1,13 +1,10 @@
-// File: scripts/AStar.js
-
 (function(global) {
     class AStar {
         constructor(grid) {
             this.grid = grid;
         }
 
-        findPath(start, end) {
-            // Implement the A* pathfinding algorithm
+        findCurvedPath(start, end) {
             let openSet = [];
             let closedSet = [];
             let path = [];
@@ -36,7 +33,7 @@
                 for (let neighbor of neighbors) {
                     if (closedSet.includes(neighbor) || neighbor.isObstacle(this.grid)) continue;
 
-                    let tentativeG = currentNode.g + 1;
+                    let tentativeG = currentNode.g + this.distance(currentNode, neighbor);
 
                     if (!openSet.includes(neighbor)) {
                         openSet.push(neighbor);
@@ -54,6 +51,14 @@
             return []; // No path found
         }
 
+        distance(a, b) {
+            const dx = Math.abs(a.x - b.x);
+            const dy = Math.abs(a.y - b.y);
+            const diagonal = Math.min(dx, dy);
+            const straight = Math.max(dx, dy) - diagonal;
+            return 1.414 * diagonal + straight;
+        }
+
         getNeighbors(node) {
             let neighbors = [];
             let { x, y } = node;
@@ -63,11 +68,15 @@
             if (y < this.grid.length - 1) neighbors.push(new Node(x, y + 1));
             if (x > 0) neighbors.push(new Node(x - 1, y));
 
+            if (y > 0 && x > 0) neighbors.push(new Node(x - 1, y - 1));
+            if (y > 0 && x < this.grid[0].length - 1) neighbors.push(new Node(x + 1, y - 1));
+            if (y < this.grid.length - 1 && x > 0) neighbors.push(new Node(x - 1, y + 1));
+            if (y < this.grid.length - 1 && x < this.grid[0].length - 1) neighbors.push(new Node(x + 1, y + 1));
+
             return neighbors;
         }
 
         heuristic(a, b) {
-            // Manhattan distance
             return Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
         }
     }
