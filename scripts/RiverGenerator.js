@@ -1,5 +1,3 @@
-// File: scripts/RiverGenerator.js
-
 (function(global) {
     class RiverGenerator {
         constructor(tileMap, aStar) {
@@ -12,7 +10,7 @@
             const cols = this.tileMap.map[0].length;
             const start = { x: 0, y: Math.floor(Math.random() * rows) };
             const end = { x: cols - 1, y: Math.floor(Math.random() * rows) };
-            const path = this.aStar.findPath(start, end);
+            const path = this.aStar.findCurvedPath(start, end);
 
             for (let node of path) {
                 this.tileMap.map[node.y][node.x] = 'water';
