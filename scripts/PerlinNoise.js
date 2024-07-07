@@ -5,7 +5,6 @@
         }
 
         noise(x, y) {
-            // Simple Perlin noise function for demonstration
             return (Math.sin(x * 12.9898 + y * 78.233) * 43758.5453) % 1;
         }
     }
