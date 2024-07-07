@@ -1,5 +1,7 @@
 // File: scripts/TileMap.js
 
+import WaveFunctionCollapse from './WaveFunctionCollapse.js';
+
 class TileMap {
     constructor(width, height, tileSize) {
         this.width = width;
@@ -51,3 +53,5 @@ class TileMap {
         }
     }
 }
+
+export default TileMap;
