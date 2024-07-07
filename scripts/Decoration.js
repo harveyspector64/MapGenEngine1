@@ -7,9 +7,10 @@
         }
 
         placeDecorations() {
-            const clusters = this.createTreeClusters();
+            const treeClusters = this.createTreeClusters();
+            const bushClusters = this.createBushClusters();
 
-            for (let cluster of clusters) {
+            for (let cluster of treeClusters) {
                 for (let { x, y } of cluster) {
                     if (this.isWithinBounds(x, y) && this.tileMap.map[y][x] === 'grass') {
                         this.tileMap.map[y][x] = 'tree';
@@ -17,19 +18,9 @@
                 }
             }
 
-            // Place single trees
-            for (let y = 0; y < this.tileMap.map.length; y++) {
-                for (let x = 0; x < this.tileMap.map[y].length; x++) {
-                    if (this.tileMap.map[y][x] === 'grass' && Math.random() < 0.05) {
-                        this.tileMap.map[y][x] = 'tree';
-                    }
-                }
-            }
-
-            // Place bushes
-            for (let y = 0; y < this.tileMap.map.length; y++) {
-                for (let x = 0; x < this.tileMap.map[y].length; x++) {
-                    if (this.tileMap.map[y][x] === 'grass' && Math.random() < 0.03) {
+            for (let cluster of bushClusters) {
+                for (let { x, y } of cluster) {
+                    if (this.isWithinBounds(x, y) && this.tileMap.map[y][x] === 'grass') {
                         this.tileMap.map[y][x] = 'bush';
                     }
                 }
@@ -37,17 +28,23 @@
         }
 
         createTreeClusters() {
+            return this.createClusters('tree', 10, 5, 5); // Number of clusters, width, height
+        }
+
+        createBushClusters() {
+            return this.createClusters('bush', 10, 3, 3); // Number of clusters, width, height
+        }
+
+        createClusters(type, clusterCount, clusterWidth, clusterHeight) {
             const clusters = [];
-            const clusterCount = 10; // Number of clusters
-            const clusterSize = 3; // Size of each cluster
 
             for (let i = 0; i < clusterCount; i++) {
-                const startX = Math.floor(Math.random() * this.tileMap.map[0].length);
-                const startY = Math.floor(Math.random() * this.tileMap.map.length);
+                const startX = Math.floor(Math.random() * (this.tileMap.map[0].length - clusterWidth));
+                const startY = Math.floor(Math.random() * (this.tileMap.map.length - clusterHeight));
                 const cluster = [];
 
-                for (let x = startX; x < startX + clusterSize; x++) {
-                    for (let y = startY; y < startY + clusterSize; y++) {
+                for (let x = startX; x < startX + clusterWidth; x++) {
+                    for (let y = startY; y < startY + clusterHeight; y++) {
                         cluster.push({ x, y });
                     }
                 }
