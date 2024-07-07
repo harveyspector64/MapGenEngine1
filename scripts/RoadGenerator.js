@@ -8,8 +8,8 @@
         }
 
         generateRoads() {
-            const start = { x: 0, y: 0 };
-            const end = { x: this.tileMap.map[0].length - 1, y: this.tileMap.map.length - 1 };
+            const start = { x: Math.floor(Math.random() * this.tileMap.map[0].length), y: Math.floor(Math.random() * this.tileMap.map.length) };
+            const end = { x: Math.floor(Math.random() * this.tileMap.map[0].length), y: Math.floor(Math.random() * this.tileMap.map.length) };
             const path = this.aStar.findPath(start, end);
 
             for (let node of path) {
