@@ -1,5 +1,3 @@
-// File: scripts/Decoration.js
-
 (function(global) {
     class Decoration {
         constructor(tileMap) {
@@ -28,11 +26,11 @@
         }
 
         createTreeClusters() {
-            return this.createClusters('tree', 10, 5, 5); // Number of clusters, width, height
+            return this.createClusters('tree', 10, 5, 5);
         }
 
         createBushClusters() {
-            return this.createClusters('bush', 10, 3, 3); // Number of clusters, width, height
+            return this.createClusters('bush', 10, 3, 3);
         }
 
         createClusters(type, clusterCount, clusterWidth, clusterHeight) {
@@ -60,7 +58,6 @@
         }
     }
 
-    // Expose Decoration to the global object
     global.Decoration = Decoration;
 
 })(window);
