@@ -32,6 +32,7 @@ class WaveFunctionCollapse {
                 const tileChoices = this.getPossibleTiles(x, y);
                 const chosenTile = this.chooseTile(tileChoices);
                 map[y][x] = chosenTile;
+                console.log(`Placed ${chosenTile} at (${x}, ${y})`);
             }
         }
     }
