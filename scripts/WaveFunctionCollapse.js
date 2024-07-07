@@ -56,16 +56,17 @@
 
         createFieldClusters() {
             const clusters = [];
-            const clusterCount = 10; // Number of clusters
-            const clusterSize = 5; // Size of each cluster
+            const clusterCount = 5; // Number of clusters
+            const clusterWidth = 5; // Width of each cluster
+            const clusterHeight = 3; // Height of each cluster
 
             for (let i = 0; i < clusterCount; i++) {
-                const startX = Math.floor(Math.random() * this.tileMap.map[0].length);
-                const startY = Math.floor(Math.random() * this.tileMap.map.length);
+                const startX = Math.floor(Math.random() * (this.tileMap.map[0].length - clusterWidth));
+                const startY = Math.floor(Math.random() * (this.tileMap.map.length - clusterHeight));
                 const cluster = [];
 
-                for (let x = startX; x < startX + clusterSize; x++) {
-                    for (let y = startY; y < startY + clusterSize; y++) {
+                for (let x = startX; x < startX + clusterWidth; x++) {
+                    for (let y = startY; y < startY + clusterHeight; y++) {
                         cluster.push({ x, y });
                     }
                 }
