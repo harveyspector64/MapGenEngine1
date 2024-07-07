@@ -1,5 +1,11 @@
 // File: main.js
 
+import TileMap from './scripts/TileMap.js';
+import AStar from './scripts/AStar.js';
+import RoadGenerator from './scripts/RoadGenerator.js';
+import RiverGenerator from './scripts/RiverGenerator.js';
+import Decoration from './scripts/Decoration.js';
+
 document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('gameCanvas');
     const context = canvas.getContext('2d');
