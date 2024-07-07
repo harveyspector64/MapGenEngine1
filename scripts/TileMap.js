@@ -21,6 +21,8 @@ class TileMap {
         // Load images
         for (let key in this.tiles) {
             this.tiles[key].src = `assets/${key}.png`;
+            this.tiles[key].onload = () => console.log(`${key} loaded`);
+            this.tiles[key].onerror = () => console.error(`Failed to load ${key}`);
         }
     }
 
