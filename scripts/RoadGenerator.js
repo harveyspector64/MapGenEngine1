@@ -6,23 +6,29 @@
         }
 
         generateRoads() {
-            const start = { x: Math.floor(Math.random() * this.tileMap.map[0].length), y: Math.floor(Math.random() * this.tileMap.map.length) };
-            const end = { x: Math.floor(Math.random() * this.tileMap.map[0].length), y: Math.floor(Math.random() * this.tileMap.map.length) };
-            const path = this.aStar.findCurvedPath(start, end);
+            const keyPoints = this.findKeyPoints();
+            for (let i = 0; i < keyPoints.length - 1; i++) {
+                const start = keyPoints[i];
+                const end = keyPoints[i + 1];
+                const path = this.aStar.findCurvedPath(start, end);
 
-            for (let node of path) {
-                this.tileMap.map[node.y][node.x] = 'road';
-            }
-
-            this.allowRoadCrossingWater(path);
-        }
-
-        allowRoadCrossingWater(path) {
-            for (let node of path) {
-                if (this.tileMap.map[node.y][node.x] === 'water') {
+                for (let node of path) {
                     this.tileMap.map[node.y][node.x] = 'road';
                 }
             }
+        }
+
+        findKeyPoints() {
+            // Example logic to find key points
+            const points = [];
+            for (let y = 0; y < this.tileMap.map.length; y++) {
+                for (let x = 0; x < this.tileMap.map[0].length; x++) {
+                    if (this.tileMap.map[y][x] === 'barn' || this.tileMap.map[y][x] === 'silo') {
+                        points.push({ x, y });
+                    }
+                }
+            }
+            return points;
         }
     }
 
