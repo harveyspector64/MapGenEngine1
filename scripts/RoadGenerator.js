@@ -1,5 +1,3 @@
-// File: scripts/RoadGenerator.js
-
 (function(global) {
     class RoadGenerator {
         constructor(tileMap, aStar) {
@@ -10,13 +8,12 @@
         generateRoads() {
             const start = { x: Math.floor(Math.random() * this.tileMap.map[0].length), y: Math.floor(Math.random() * this.tileMap.map.length) };
             const end = { x: Math.floor(Math.random() * this.tileMap.map[0].length), y: Math.floor(Math.random() * this.tileMap.map.length) };
-            const path = this.aStar.findPath(start, end);
+            const path = this.aStar.findCurvedPath(start, end);
 
             for (let node of path) {
                 this.tileMap.map[node.y][node.x] = 'road';
             }
 
-            // Allow roads to cross water
             this.allowRoadCrossingWater(path);
         }
 
@@ -29,7 +26,6 @@
         }
     }
 
-    // Expose RoadGenerator to the global object
     global.RoadGenerator = RoadGenerator;
 
 })(window);
