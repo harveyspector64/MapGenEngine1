@@ -3,13 +3,13 @@ class TileMap {
         this.width = width;
         this.height = height;
         this.tileSize = tileSize;
-        this.map = [];
+        this.map = this.initializeMap(width, height, tileSize);
         this.tiles = {
             grass: new Image(),
-            field: new Image(), // Use field.png
+            field: new Image(),
             road: new Image(),
             tree: new Image(),
-            bush: new Image(), // Use bush.png
+            bush: new Image(),
             hill: new Image(),
             barn: new Image(),
             silo: new Image(),
@@ -22,8 +22,16 @@ class TileMap {
         }
     }
 
+    initializeMap(width, height, tileSize) {
+        const rows = Math.ceil(height / tileSize);
+        const cols = Math.ceil(width / tileSize);
+        const map = Array.from({ length: rows }, () => Array(cols).fill('grass'));
+        return map;
+    }
+
     generateMap() {
         // Implement Wave Function Collapse to generate the map
+        // This is a placeholder. We'll implement this step later.
     }
 
     draw(context) {
