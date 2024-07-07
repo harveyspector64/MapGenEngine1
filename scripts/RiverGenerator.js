@@ -19,6 +19,9 @@ class RiverGenerator {
 
         // Add meandering effect
         this.addMeanders(path);
+
+        // Add lakes and ponds
+        this.addLakesAndPonds();
     }
 
     addMeanders(path) {
@@ -31,6 +34,24 @@ class RiverGenerator {
                 }
                 if (this.isWithinBounds(node.x, node.y + direction)) {
                     this.tileMap.map[node.y + direction][node.x] = 'water';
+                }
+            }
+        }
+    }
+
+    addLakesAndPonds() {
+        const lakeCount = 3;
+        const lakeSize = 4;
+
+        for (let i = 0; i < lakeCount; i++) {
+            const startX = Math.floor(Math.random() * this.tileMap.map[0].length);
+            const startY = Math.floor(Math.random() * this.tileMap.map.length);
+
+            for (let x = startX; x < startX + lakeSize; x++) {
+                for (let y = startY; y < startY + lakeSize; y++) {
+                    if (this.isWithinBounds(x, y)) {
+                        this.tileMap.map[y][x] = 'water';
+                    }
                 }
             }
         }
