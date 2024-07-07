@@ -16,10 +16,7 @@
                 this.tileMap.map[node.y][node.x] = 'water';
             }
 
-            // Add meandering effect
             this.addMeanders(path);
-
-            // Add lakes and ponds
             this.addLakesAndPonds();
         }
 
@@ -61,7 +58,6 @@
         }
     }
 
-    // Expose RiverGenerator to the global object
     global.RiverGenerator = RiverGenerator;
 
 })(window);
