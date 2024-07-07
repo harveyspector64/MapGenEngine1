@@ -38,12 +38,16 @@ class TileMap {
         wfc.run();
     }
 
-    draw(context) {
-        for (let y = 0; y < this.map.length; y++) {
-            for (let x = 0; x < this.map[y].length; x++) {
-                let tile = this.map[y][x];
+draw(context) {
+    for (let y = 0; y < this.map.length; y++) {
+        for (let x = 0; x < this.map[y].length; x++) {
+            let tile = this.map[y][x];
+            if (this.tiles[tile].complete) {
                 context.drawImage(this.tiles[tile], x * this.tileSize, y * this.tileSize, this.tileSize, this.tileSize);
+            } else {
+                console.error(`Image for tile ${tile} is not loaded`);
             }
         }
     }
 }
+
