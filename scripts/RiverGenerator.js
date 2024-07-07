@@ -10,8 +10,8 @@
         generateRivers() {
             const rows = this.tileMap.map.length;
             const cols = this.tileMap.map[0].length;
-            const start = { x: 0, y: Math.floor(rows / 2) };
-            const end = { x: cols - 1, y: Math.floor(rows / 2) };
+            const start = { x: 0, y: Math.floor(Math.random() * rows) };
+            const end = { x: cols - 1, y: Math.floor(Math.random() * rows) };
             const path = this.aStar.findPath(start, end);
 
             for (let node of path) {
