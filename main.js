@@ -8,21 +8,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize TileMap and start the generation process
     const tileMap = new TileMap(canvas.width, canvas.height, 32);
-    const aStar = new AStar(tileMap.map);
 
-    tileMap.generateMap();
-    
-    // Generate roads and rivers
-    const roadGenerator = new RoadGenerator(tileMap, aStar);
-    roadGenerator.generateRoads();
+    // Ensure images are loaded before generating the map and drawing
+    let imagesLoaded = 0;
+    const totalImages = Object.keys(tileMap.tiles).length;
 
-    const riverGenerator = new RiverGenerator(tileMap, aStar);
-    riverGenerator.generateRivers();
+    for (let key in tileMap.tiles) {
+        tileMap.tiles[key].onload = () => {
+            imagesLoaded++;
+            if (imagesLoaded === totalImages) {
+                tileMap.generateMap();
 
-    // Place decorations
-    const decoration = new Decoration(tileMap);
-    decoration.placeDecorations();
+                // Generate roads and rivers
+                const aStar = new AStar(tileMap.map);
+                const roadGenerator = new RoadGenerator(tileMap, aStar);
+                roadGenerator.generateRoads();
 
-    // Drawing the map on the canvas
-    tileMap.draw(context);
+                const riverGenerator = new RiverGenerator(tileMap, aStar);
+                riverGenerator.generateRivers();
+
+                // Place decorations
+                const decoration = new Decoration(tileMap);
+                decoration.placeDecorations();
+
+                // Drawing the map on the canvas
+                tileMap.draw(context);
+            }
+        };
+    }
 });
