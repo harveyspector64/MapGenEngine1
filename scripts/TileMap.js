@@ -16,15 +16,15 @@
                 'barn': new Image(),
                 'silo': new Image()
             };
-            this.tiles['grass'].src = 'images/grass.png';
-            this.tiles['field'].src = 'images/field.png';
-            this.tiles['road'].src = 'images/road.png';
-            this.tiles['tree'].src = 'images/tree.png';
-            this.tiles['bush'].src = 'images/bush.png';
-            this.tiles['hill'].src = 'images/hill.png';
-            this.tiles['water'].src = 'images/water.png';
-            this.tiles['barn'].src = 'images/barn.png';
-            this.tiles['silo'].src = 'images/silo.png';
+            this.tiles['grass'].src = 'assets/grass.png';
+            this.tiles['field'].src = 'assets/field.png';
+            this.tiles['road'].src = 'assets/road.png';
+            this.tiles['tree'].src = 'assets/tree.png';
+            this.tiles['bush'].src = 'assets/bush.png';
+            this.tiles['hill'].src = 'assets/hill.png';
+            this.tiles['water'].src = 'assets/water.png';
+            this.tiles['barn'].src = 'assets/barn.png';
+            this.tiles['silo'].src = 'assets/silo.png';
         }
 
         initializeMap() {
