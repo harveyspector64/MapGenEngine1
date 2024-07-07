@@ -14,5 +14,16 @@ class RoadGenerator {
         for (let node of path) {
             this.tileMap.map[node.y][node.x] = 'road';
         }
+
+        // Allow roads to cross water
+        this.allowRoadCrossingWater(path);
+    }
+
+    allowRoadCrossingWater(path) {
+        for (let node of path) {
+            if (this.tileMap.map[node.y][node.x] === 'water') {
+                this.tileMap.map[node.y][node.x] = 'road';
+            }
+        }
     }
 }
