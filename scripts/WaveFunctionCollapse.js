@@ -111,3 +111,6 @@ class WaveFunctionCollapse {
         return x >= 0 && x < this.tileMap.map[0].length && y >= 0 && y < this.tileMap.map.length;
     }
 }
+
+// Ensure this export is at the end of the file.
+export default WaveFunctionCollapse;
