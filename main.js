@@ -1,11 +1,5 @@
 // File: main.js
 
-import TileMap from './scripts/TileMap.js';
-import AStar from './scripts/AStar.js';
-import RoadGenerator from './scripts/RoadGenerator.js';
-import RiverGenerator from './scripts/RiverGenerator.js';
-import Decoration from './scripts/Decoration.js';
-
 document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('gameCanvas');
     const context = canvas.getContext('2d');
@@ -13,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.height = window.innerHeight;
 
     // Initialize TileMap and start the generation process
-    const tileMap = new TileMap(canvas.width, canvas.height, 32);
+    const tileMap = new window.TileMap(canvas.width, canvas.height, 32);
 
     // Ensure images are loaded before generating the map and drawing
     let imagesLoaded = 0;
@@ -26,15 +20,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 tileMap.generateMap();
 
                 // Generate roads and rivers
-                const aStar = new AStar(tileMap.map);
-                const roadGenerator = new RoadGenerator(tileMap, aStar);
+                const aStar = new window.AStar(tileMap.map);
+                const roadGenerator = new window.RoadGenerator(tileMap, aStar);
                 roadGenerator.generateRoads();
 
-                const riverGenerator = new RiverGenerator(tileMap, aStar);
+                const riverGenerator = new window.RiverGenerator(tileMap, aStar);
                 riverGenerator.generateRivers();
 
                 // Place decorations
-                const decoration = new Decoration(tileMap);
+                const decoration = new window.Decoration(tileMap);
                 decoration.placeDecorations();
 
                 // Drawing the map on the canvas
