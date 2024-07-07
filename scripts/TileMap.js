@@ -6,11 +6,10 @@ class TileMap {
         this.map = [];
         this.tiles = {
             grass: new Image(),
-            field: new Image(),
-            dirt: new Image(),
+            field: new Image(), // Use field.png
             road: new Image(),
             tree: new Image(),
-            bushy_grass: new Image(),
+            bush: new Image(), // Use bush.png
             hill: new Image(),
             barn: new Image(),
             silo: new Image(),
