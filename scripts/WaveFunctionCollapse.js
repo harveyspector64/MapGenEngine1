@@ -1,5 +1,3 @@
-// File: scripts/WaveFunctionCollapse.js
-
 (function(global) {
     class WaveFunctionCollapse {
         constructor(tileMap) {
@@ -8,7 +6,6 @@
         }
 
         generatePatterns() {
-            // Define patterns based on the provided tiles and rules
             const patterns = {
                 grass: ['field', 'road', 'tree', 'bush', 'hill', 'barn', 'silo', 'water'],
                 field: ['grass', 'road', 'tree', 'bush'],
@@ -56,9 +53,9 @@
 
         createFieldClusters() {
             const clusters = [];
-            const clusterCount = 5; // Number of clusters
-            const clusterWidth = 5; // Width of each cluster
-            const clusterHeight = 3; // Height of each cluster
+            const clusterCount = 5;
+            const clusterWidth = 5;
+            const clusterHeight = 3;
 
             for (let i = 0; i < clusterCount; i++) {
                 const startX = Math.floor(Math.random() * (this.tileMap.map[0].length - clusterWidth));
@@ -78,7 +75,6 @@
         }
 
         getPossibleTiles(x, y) {
-            // Return possible tiles based on neighboring tiles
             const neighbors = this.getNeighbors(x, y);
             let possibleTiles = Object.keys(this.patterns);
 
@@ -95,16 +91,15 @@
             const { map } = this.tileMap;
             const neighbors = [];
 
-            if (y > 0) neighbors.push(map[y - 1][x]); // North
-            if (x < map[0].length - 1) neighbors.push(map[y][x + 1]); // East
-            if (y < map.length - 1) neighbors.push(map[y + 1][x]); // South
-            if (x > 0) neighbors.push(map[y][x - 1]); // West
+            if (y > 0) neighbors.push(map[y - 1][x]);
+            if (x < map[0].length - 1) neighbors.push(map[y][x + 1]);
+            if (y < map.length - 1) neighbors.push(map[y + 1][x]);
+            if (x > 0) neighbors.push(map[y][x - 1]);
 
             return neighbors;
         }
 
         chooseTile(choices) {
-            // Randomly choose a tile from the possible choices
             const randomIndex = Math.floor(Math.random() * choices.length);
             return choices[randomIndex];
         }
@@ -114,7 +109,6 @@
         }
     }
 
-    // Expose WaveFunctionCollapse to the global object
     global.WaveFunctionCollapse = WaveFunctionCollapse;
 
 })(window);
