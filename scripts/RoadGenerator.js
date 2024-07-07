@@ -19,7 +19,6 @@
         }
 
         findKeyPoints() {
-            // Example logic to find key points
             const points = [];
             for (let y = 0; y < this.tileMap.map.length; y++) {
                 for (let x = 0; x < this.tileMap.map[0].length; x++) {
