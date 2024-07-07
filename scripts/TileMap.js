@@ -25,9 +25,11 @@
             this.tiles['water'].src = 'assets/water.png';
             this.tiles['barn'].src = 'assets/barn.png';
             this.tiles['silo'].src = 'assets/silo.png';
+            console.log("TileMap initialized");
         }
 
         initializeMap() {
+            console.log("Initializing map");
             const rows = Math.floor(this.height / this.tileSize);
             const cols = Math.floor(this.width / this.tileSize);
             const map = [];
@@ -42,21 +44,27 @@
         }
 
         generateMap() {
+            console.log("Generating map");
             const wfc = new global.WaveFunctionCollapse(this);
             wfc.run();
+            console.log("WFC complete");
 
             const aStar = new global.AStar(this.map);
             const roadGenerator = new global.RoadGenerator(this, aStar);
             roadGenerator.generateRoads();
+            console.log("Roads generated");
 
             const riverGenerator = new global.RiverGenerator(this, aStar);
             riverGenerator.generateRivers();
+            console.log("Rivers generated");
 
             const decoration = new global.Decoration(this);
             decoration.placeDecorations();
+            console.log("Decorations placed");
         }
 
         draw(context) {
+            console.log("Drawing map");
             for (let y = 0; y < this.map.length; y++) {
                 for (let x = 0; x < this.map[y].length; x++) {
                     const tile = this.map[y][x];
