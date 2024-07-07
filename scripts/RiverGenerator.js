@@ -35,22 +35,17 @@
             }
         }
 
-        addLakesAndPonds() {
-            const lakeCount = 3;
-            const lakeSize = 4;
-
-            for (let i = 0; i < lakeCount; i++) {
-                const startX = Math.floor(Math.random() * this.tileMap.map[0].length);
-                const startY = Math.floor(Math.random() * this.tileMap.map.length);
-
-                for (let x = startX; x < startX + lakeSize; x++) {
-                    for (let y = startY; y < startY + lakeSize; y++) {
-                        if (this.isWithinBounds(x, y)) {
-                            this.tileMap.map[y][x] = 'water';
-                        }
-                    }
-                }
+addLakesAndPonds() {
+    const noise = new global.PerlinNoise(Date.now());
+    for (let y = 0; y < this.tileMap.map.length; y++) {
+        for (let x = 0; x < this.tileMap.map[0].length; x++) {
+            if (noise.noise(x / 10, y / 10) > 0.5) {
+                this.tileMap.map[y][x] = 'water';
             }
+        }
+    }
+}
+
         }
 
         isWithinBounds(x, y) {
