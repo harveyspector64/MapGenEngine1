@@ -90,24 +90,3 @@ class WaveFunctionCollapse {
     }
 
     getNeighbors(x, y) {
-        const { map } = this.tileMap;
-        const neighbors = [];
-
-        if (y > 0) neighbors.push(map[y - 1][x]); // North
-        if (x < map[0].length - 1) neighbors.push(map[y][x + 1]); // East
-        if (y < map.length - 1) neighbors.push(map[y + 1][x]); // South
-        if (x > 0) neighbors.push(map[y][x - 1]); // West
-
-        return neighbors;
-    }
-
-    chooseTile(choices) {
-        // Randomly choose a tile from the possible choices
-        const randomIndex = Math.floor(Math.random() * choices.length);
-        return choices[randomIndex];
-    }
-
-    isWithinBounds(x, y) {
-        return x >= 0 && x < this.tileMap.map[0].length && y >= 0 && y < this.tileMap.map.length;
-    }
-}
