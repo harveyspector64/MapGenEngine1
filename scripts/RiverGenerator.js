@@ -35,17 +35,15 @@
             }
         }
 
-addLakesAndPonds() {
-    const noise = new global.PerlinNoise(Date.now());
-    for (let y = 0; y < this.tileMap.map.length; y++) {
-        for (let x = 0; x < this.tileMap.map[0].length; x++) {
-            if (noise.noise(x / 10, y / 10) > 0.5) {
-                this.tileMap.map[y][x] = 'water';
+        addLakesAndPonds() {
+            const noise = new global.PerlinNoise(Date.now());
+            for (let y = 0; y < this.tileMap.map.length; y++) {
+                for (let x = 0; x < this.tileMap.map[0].length; x++) {
+                    if (noise.noise(x / 10, y / 10) > 0.5) {
+                        this.tileMap.map[y][x] = 'water';
+                    }
+                }
             }
-        }
-    }
-}
-
         }
 
         isWithinBounds(x, y) {
